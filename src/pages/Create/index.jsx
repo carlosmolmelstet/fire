@@ -4,13 +4,34 @@ import {
   Container,
   Wrapper, } from './styles';
 
+import {db} from "../../firebase";
+
+
 import Navbar from '../../components/Navbar';
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import Btn from '../../components/Btn';
+import { Link } from 'react-router-dom';
 
 
-function Home() {
+function Create(e) {
+  function handleCreate() {
+    db.collection("produtos").add({
+      name: "teste",
+      description: "teste descri",
+      price: 16,
+      amont: 165
+  })
+  }
+
+
+
+      
+  
+  
+
+   
+    
   return (
       <Container>
           <Navbar />
@@ -40,7 +61,9 @@ function Home() {
               </div>
               <div className="row">
                 <div className="col-12 col-sm-12">
-                  <Btn label="Imagem" />
+                  <Link to="/">
+                    <Btn onClick={handleCreate}  label="ADICIONAR" />
+                  </Link>
                 </div>
               </div>
             </form>
@@ -49,4 +72,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Create;

@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Button } from './styles';
 
-function Btn() {
+function Btn(props) {
   return (
-      <Button>
-          ADICIONAR
+      <Button onClick={props.onClick}>
+          {props.label}
       </Button>
   );
 }

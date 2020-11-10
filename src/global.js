@@ -10,6 +10,7 @@ export default createGlobalStyle`
     body{
         background: #333333;
         font-family: 'Cairo', sans-serif;
+        overflow-x: hidden;
 
     }
 

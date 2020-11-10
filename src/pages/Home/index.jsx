@@ -18,12 +18,31 @@ function Home() {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(()=>{
-    db.collection('produtos').onSnapshot(snapshot=>{
+    db.collection('produtos/').onSnapshot(snapshot=>{
       setProdutos(snapshot.docs.map(function(doc){
-        return {info:doc.data()};
+        return {id:doc.id,
+          info:doc.data()};
       }))
     })
   },[])
+
+  function handleClick(e) {
+    db.collection("produtos").doc("ba62zir63ri0Kn6XgZTc").delete().then(function() {
+      console.log("excluir");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+  }
+
+  
+
+  // useEffect(()=>{
+  //   db.collection('produtos/').onSnapshot(snapshot=>{
+  //     setID(snapshot.docs.map(function(doc){
+  //       return {id:doc.id};
+  //     }))
+  //   })
+  // },[])
 
   return (
       <Container>
@@ -66,16 +85,35 @@ function Home() {
                             </div>
                             <div className="col-6">
                                <div className="product-action">
-                                 <img className="edit" src={edit} alt=""/>
-                                 <img src={exclude} alt=""/>
+                               
+                                 <Link to={`/edit/${val.id}`}>
+                                  <img className="edit" src={edit} alt=""/>
+                                 </Link>
+                                 <img onClick={() => db.collection("produtos").doc(`${val.id}`).delete().then(function() {
+                                console.log("excluir");
+                              }).catch(function(error) {
+                                  console.error("Error removing document: ", error);
+                              })} 
+                                 
+                                 
+                                 src={exclude} alt=""/>
                                </div>
                             </div>
                           </div>
                         </Product>
+                        {/* {
+                                  id.map(function(val){
+                                      return (
+                                      <h1>{val.id}</h1>
+                                      )
+                                  })
+                                } */}
                         </div>
+                        
                     )
                   })
                 }
+               
               </div>
 
 
