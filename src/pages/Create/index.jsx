@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import { 
   Container,
@@ -14,33 +14,38 @@ import Btn from '../../components/Btn';
 import { Link } from 'react-router-dom';
 
 
-function Create(e) {
+function Create() {
+  const [nome, setNome] = useState('')
+  const [titulo, setTitulo] = useState('');
+
+
+
+
+
   function handleCreate() {
+
     db.collection("produtos").add({
       name: "teste",
       description: "teste descri",
-      price: 16,
+      price: 10,
       amont: 165
   })
   }
 
 
 
-      
-  
   
 
-   
-    
+
   return (
       <Container>
           <Navbar />
           <Wrapper>
              <h2>ADICIONAR PRODUTO</h2>
-            <form>
+            <form >
               <div className="row">
                 <div className="col-12 col-sm-4">
-                  <Input label="nome" />
+                  <Input label="nome"/>
                 </div>
                 <div className="col-12 col-sm-4">
                   <Input label="preço" />
@@ -62,7 +67,7 @@ function Create(e) {
               <div className="row">
                 <div className="col-12 col-sm-12">
                   <Link to="/">
-                    <Btn onClick={handleCreate}  label="ADICIONAR" />
+                    <Btn  onClick={handleCreate} label="ADICIONAR" />
                   </Link>
                 </div>
               </div>
