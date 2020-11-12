@@ -25,14 +25,9 @@ function Home() {
       }))
     })
   },[])
+  
+  
 
-  function handleClick(e) {
-    db.collection("produtos").doc("ba62zir63ri0Kn6XgZTc").delete().then(function() {
-      console.log("excluir");
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
-    });
-  }
 
   
 
@@ -64,7 +59,7 @@ function Home() {
                {
                  produtos.map(function(val){
                     return (
-                      <div className="col-lg-4 col-md-6 col-sm-12">
+                      <div key={val.id} className="col-lg-4 col-md-6 col-sm-12">
                         <Product>
                           <div class="row">
                             <div className="col-12 text-center product-name">
@@ -86,7 +81,7 @@ function Home() {
                             <div className="col-6">
                                <div className="product-action">
                                
-                                 <Link to={`/edit/${val.id}`}>
+                                 <Link to={`/edit${val.id}`}>
                                   <img className="edit" src={edit} alt=""/>
                                  </Link>
                                  <img onClick={() => db.collection("produtos").doc(`${val.id}`).delete().then(function() {
@@ -101,14 +96,8 @@ function Home() {
                             </div>
                           </div>
                         </Product>
-                        {/* {
-                                  id.map(function(val){
-                                      return (
-                                      <h1>{val.id}</h1>
-                                      )
-                                  })
-                                } */}
-                        </div>
+                        
+                      </div>
                         
                     )
                   })

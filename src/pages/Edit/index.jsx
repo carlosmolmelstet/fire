@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {Link, useParams} from 'react-router-dom';
 
 import { 
   Container,
@@ -12,18 +13,31 @@ import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import Btn from '../../components/Btn';
 
+import {db} from "../../firebase";
+
+
 
 function Edit() {
-  // const [produtos, setProdutos] = useState([]);
+  const params = useParams();
+  const [produtos, setProdutos] = useState([]);
   
 
-  // useEffect(()=>{
-  //   db.collection('produtos').doc("LOy5COJsnDI9cbdIVCJG").onSnapshot(snapshot=>{
-  //     setProdutos(snapshot.docs.map(function(doc){
-  //       return {info:doc.data()};
-  //     }))
-  //   })
-  // },[])
+  function handleCreate() {
+    var produtosRef = db.collection("produtos").doc(`${params.id}`);
+
+      return produtosRef.update({
+          name: "produto novo y",
+          description: "nova descriçao y",
+          price: 99,
+          amont: 100
+      })
+      .then(function() {
+          console.log("Document successfully updated!");
+      })
+      .catch(function(error) {
+          console.error("Error updating document: ", error);
+      });
+  }
 
   
   return (
@@ -56,7 +70,9 @@ function Edit() {
                     </div>
                     <div className="row">
                       <div className="col-12 col-sm-12">
-                        <Btn label="EDITAR" />
+                        <Link to="/">
+                          <Btn onClick={handleCreate} label="EDITAR" />
+                        </Link>
                       </div>
                     </div>
                   </form>
