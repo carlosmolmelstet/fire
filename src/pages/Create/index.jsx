@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 
 import { 
   Container,
@@ -15,20 +15,35 @@ import { Link } from 'react-router-dom';
 
 
 function Create() {
-  const [nome, setNome] = useState('')
-  const [titulo, setTitulo] = useState('');
 
+  const initialValue = {
+    name: '',
+    description: '',
+    price: '',
+    amont: '',
+    image: ''
+  }
+  
 
+  const [values, setValues] = useState(initialValue)
 
+  const handleInputChange = e =>{
+    var { name, value } = e.target
+    setValues({
+      ...values,
+      [name]: value
+    })
+  }
 
 
   function handleCreate() {
 
     db.collection("produtos").add({
-      name: "teste",
-      description: "teste descri",
+      name: values.name,
+      description: values.description,
       price: 10,
-      amont: 165
+      amont: 165,
+      image: "imagemmm"
   })
   }
 
@@ -45,29 +60,29 @@ function Create() {
             <form >
               <div className="row">
                 <div className="col-12 col-sm-4">
-                  <Input label="nome"/>
+                  <Input onChange={handleInputChange} name="name" value={values.name} label="nome"/>
                 </div>
                 <div className="col-12 col-sm-4">
-                  <Input label="preço" />
+                  <Input onChange={handleInputChange} value={values.price} name="price" label="preço" />
                 </div>
                 <div className="col-12 col-sm-4">
-                  <Input label="qtd" />
+                  <Input onChange={handleInputChange} value={values.amont} name="amont" label="qtd" />
                 </div>
               </div>
               <div className="row">
                 <div className="col-12 col-sm-12">
-                 <Textarea label="descrição" />
+                 <Textarea onChange={handleInputChange} value={values.description}  name="description" label="descrição" />
                 </div>
               </div>
               <div className="row">
                 <div className="col-12 col-sm-12">
-                  <Input label="Imagem" />
+                  <Input onChange={handleInputChange} value={values.image} name="image" label="Imagem" />
                 </div>
               </div>
               <div className="row">
                 <div className="col-12 col-sm-12">
                   <Link to="/">
-                    <Btn  onClick={handleCreate} label="ADICIONAR" />
+                    <Btn  onClick={handleCreate}  label="ADICIONAR" />
                   </Link>
                 </div>
               </div>

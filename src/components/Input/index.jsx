@@ -6,7 +6,7 @@ function Input(props) {
   return (
       <Container>
           <h5 className="label">{props.label}</h5>
-          <input value={props.value} type="text"/>
+          <input name={props.name} onChange={props.onChange} value={props.value} type="text"/>
       </Container>
   );
 }
