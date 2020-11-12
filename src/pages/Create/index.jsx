@@ -31,7 +31,8 @@ function Create() {
     var { name, value } = e.target
     setValues({
       ...values,
-      [name]: value
+      [name]: value,
+
     })
   }
 
@@ -41,9 +42,9 @@ function Create() {
     db.collection("produtos").add({
       name: values.name,
       description: values.description,
-      price: 10,
-      amont: 165,
-      image: "imagemmm"
+      price: values.price,
+      amont: values.amont,
+      image: values.image
   })
   }
 

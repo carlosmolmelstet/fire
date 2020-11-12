@@ -19,17 +19,37 @@ import {db} from "../../firebase";
 
 function Edit() {
   const params = useParams();
-  const [produtos, setProdutos] = useState([]);
+
+  const initialValue = {
+    name: '',
+    description: '',
+    price: '',
+    amont: '',
+    image: ''
+  }
+  
+
+  const [values, setValues] = useState(initialValue)
+
+  const handleInputChange = e =>{
+    var { name, value } = e.target
+    setValues({
+      ...values,
+      [name]: value,
+
+    })
+  }
   
 
   function handleCreate() {
     var produtosRef = db.collection("produtos").doc(`${params.id}`);
 
       return produtosRef.update({
-          name: "produto novo y",
-          description: "nova descriçao y",
-          price: 99,
-          amont: 100
+        name: values.name,
+        description: values.description,
+        price: values.price,
+        amont: values.amont,
+        image: values.image
       })
       .then(function() {
           console.log("Document successfully updated!");
@@ -49,23 +69,23 @@ function Edit() {
                     <form>
                     <div className="row">
                       <div className="col-12 col-sm-4">
-                        <Input  label="nome" />
+                        <Input onChange={handleInputChange} name="name" value={values.name} placeholder="Nome" label="nome" />
                       </div>
                       <div className="col-12 col-sm-4">
-                        <Input label="preço" />
+                        <Input onChange={handleInputChange} name="price" value={values.price} placeholder="Proço" label="preço" />
                       </div>
                       <div className="col-12 col-sm-4">
-                        <Input label="qtd" />
+                        <Input onChange={handleInputChange} name="amont" value={values.amont} placeholder="Quantidade" label="qtd" />
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-12 col-sm-12">
-                       <Textarea label="descrição" />
+                       <Textarea onChange={handleInputChange} name="description" value={values.description} placeholder="Descrição" label="descrição" />
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-12 col-sm-12">
-                        <Input label="Imagem" />
+                        <Input  onChange={handleInputChange} name="image" value={values.image} placeholder="Link da Imagem" label="Imagem" />
                       </div>
                     </div>
                     <div className="row">
