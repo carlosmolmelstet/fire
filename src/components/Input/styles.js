@@ -29,7 +29,9 @@ export const Container = styled.div`
   }
 
     input:focus  {     
-      border: 3px solid #7159C1;
+      border: 3px solid #48cae4;
+      padding: 22px;
+
 
   }
 `;

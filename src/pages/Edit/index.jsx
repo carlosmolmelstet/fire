@@ -20,7 +20,6 @@ function Edit() {
 
   const params = useParams();
 
-
   function handleCreate() {
     
     var produtosRef = db.collection("produtos").doc(`${params.id}`);
@@ -39,18 +38,12 @@ function Edit() {
     
     var data = doc.data();
 
-
     window.$info = data;
-    
     
     
   }).catch(function(error) {
     console.log("Error getting document:", error);
   });
-  
-
- 
-
   
     var initialValue = {
       name: window.$info.name,
@@ -63,12 +56,6 @@ function Edit() {
     
     const [values, setValues] = useState(initialValue)
     
-    
-    
-    
-    
-
-
 
   const handleInputChange = e =>{
     var { name, value } = e.target
@@ -79,17 +66,6 @@ function Edit() {
     })
   }
 
-
-
-  
-
-
-  
-
-
-  
-
-  
   return (
       <Container>
           <Navbar />
@@ -125,7 +101,8 @@ function Edit() {
 
                         </Link>
                         <Link to={`/`}>
-                          <Btn  label="VOLTAR" />
+                          <button>VOLTAR</button>
+
 
                         </Link>
                       </div>

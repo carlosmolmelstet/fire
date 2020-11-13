@@ -7,7 +7,7 @@ export const Container = styled.div`
 export const Wrapper = styled.nav`
     width: 1400px;
 
-    margin-top: 100px;
+    margin-top: 60px;
     margin-left: 50%;
     transform: translateX(-50%);
     
@@ -28,6 +28,31 @@ export const Wrapper = styled.nav`
             text-align: center;
             font-size: 60px;
         }
+    }
+
+    button {
+
+        margin-top: 30px;
+        padding: 10px 30px;
+
+        border: 0;
+        border-radius: 25px;
+
+        background-color: #48cae4;
+
+        font-family: Kanit;
+        font-weight: normal;
+        font-size: 36px;
+        color: #FFF;
+
+        transition: background-color 0.2s;
+
+        outline: none !important;
+
+    :hover {
+        cursor: pointer;
+        background-color: #00b4d8;
+    }
     }
 `;
 

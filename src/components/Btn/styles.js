@@ -9,7 +9,7 @@ export const Button = styled.button`
     border: 0;
     border-radius: 25px;
 
-    background-color: #7159C1;
+    background-color: #48cae4;
 
     font-family: Kanit;
     font-weight: normal;
@@ -18,9 +18,12 @@ export const Button = styled.button`
 
     transition: background-color 0.2s;
 
+    outline: none !important;
+
+
     :hover {
         cursor: pointer;
-        background-color: #9159C1;
+        background-color: #00b4d8;
     }
 `;
 

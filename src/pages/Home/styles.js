@@ -11,15 +11,11 @@ export const Wrapper = styled.div`
     margin-left: 50%;
     transform: translateX(-50%);
 
-    padding: 15px;
-
-    
+    padding: 15px;  
 
     @media(max-width: 1400px) {
         width: 100vw;
     }
-
-   
 
 `;
 
@@ -33,13 +29,14 @@ export const Titulo = styled.div`
     }
    
     button {
+        outline: none !important;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100px;
         width: 100px;
         margin-left: 30px;
-        background-color: #7159C1;
+        background-color: #48cae4;
         border: 0;
         border-radius: 25px;
         color: #FFF;
@@ -48,7 +45,7 @@ export const Titulo = styled.div`
 
         }
     button:hover {
-        background-color: #974CD7;
+        background-color: #00b4d8;
         cursor: pointer;
     }
 
@@ -79,7 +76,7 @@ export const Product = styled.div`
     margin-top: 30px;
     padding: 20px;
 
-    background: #7159c1;
+    background: #474747;
     border-radius: 20px;
 
     color: #FFF;
@@ -88,7 +85,7 @@ export const Product = styled.div`
     transition: background-color 0.2s;
 
     :hover {
-        background: #974CD7;
+        background: #575757;
     }
 
     .product-name h5{
