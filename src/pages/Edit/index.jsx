@@ -16,20 +16,56 @@ import Btn from '../../components/Btn';
 import {db} from "../../firebase";
 
 
-
 function Edit() {
+
   const params = useParams();
 
-  const initialValue = {
-    name: '',
-    description: '',
-    price: '',
-    amont: '',
-    image: ''
+
+  function handleCreate() {
+    
+    var produtosRef = db.collection("produtos").doc(`${params.id}`);
+
+      return produtosRef.update({
+        name: values.name,
+        description: values.description,
+        price: values.price,
+        amont: values.amont,
+        image: values.image,
+      },)
+      
   }
   
+  db.collection("produtos").doc(`${params.id}`).get().then(function teste(doc) {
+    
+    var data = doc.data();
 
-  const [values, setValues] = useState(initialValue)
+
+    window.$info = data;
+    
+    
+    
+  }).catch(function(error) {
+    console.log("Error getting document:", error);
+  });
+  
+  
+    var initialValue = {
+      name: window.$info.name,
+      description: window.$info.description,
+      price: window.$info.price,
+      amont: window.$info.amont,
+      image: window.$info.image
+    }
+    
+    
+    const [values, setValues] = useState(initialValue)
+    
+    
+    
+    
+    
+
+
 
   const handleInputChange = e =>{
     var { name, value } = e.target
@@ -39,25 +75,17 @@ function Edit() {
 
     })
   }
+
+
+
   
 
-  function handleCreate() {
-    var produtosRef = db.collection("produtos").doc(`${params.id}`);
 
-      return produtosRef.update({
-        name: values.name,
-        description: values.description,
-        price: values.price,
-        amont: values.amont,
-        image: values.image
-      })
-      .then(function() {
-          console.log("Document successfully updated!");
-      })
-      .catch(function(error) {
-          console.error("Error updating document: ", error);
-      });
-  }
+  
+
+
+  console.log(values.name);
+  
 
   
   return (
@@ -69,30 +97,32 @@ function Edit() {
                     <form>
                     <div className="row">
                       <div className="col-12 col-sm-4">
-                        <Input onChange={handleInputChange} name="name" value={values.name} placeholder="Nome" label="nome" />
+                        <Input required id="name" onChange={handleInputChange} name="name" value={values.name} label="nome" />
                       </div>
                       <div className="col-12 col-sm-4">
-                        <Input onChange={handleInputChange} name="price" value={values.price} placeholder="Proço" label="preço" />
+                        <Input required id="price" onChange={handleInputChange} name="price" value={values.price}  label="preço" />
                       </div>
                       <div className="col-12 col-sm-4">
-                        <Input onChange={handleInputChange} name="amont" value={values.amont} placeholder="Quantidade" label="qtd" />
+                        <Input required id="amont" onChange={handleInputChange} name="amont" value={values.amont} placeholder="Quantidade" label="qtd" />
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-12 col-sm-12">
-                       <Textarea onChange={handleInputChange} name="description" value={values.description} placeholder="Descrição" label="descrição" />
+                       <Textarea id="description" onChange={handleInputChange} name="description" value={values.description} placeholder="Descrição" label="descrição" />
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-12 col-sm-12">
-                        <Input  onChange={handleInputChange} name="image" value={values.image} placeholder="Link da Imagem" label="Imagem" />
+                        <Input id="image" onChange={handleInputChange} name="image" value={values.image} placeholder="Link da Imagem" label="Imagem" />
                       </div>
                     </div>
                     <div className="row">
                       <div className="col-12 col-sm-12">
                         <Link to="/">
                           <Btn onClick={handleCreate} label="EDITAR" />
+
                         </Link>
+                        <h1 onClick={handleCreate}>teste</h1>
                       </div>
                     </div>
                   </form>
