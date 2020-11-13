@@ -48,6 +48,9 @@ function Edit() {
     console.log("Error getting document:", error);
   });
   
+
+ 
+
   
     var initialValue = {
       name: window.$info.name,
@@ -84,7 +87,6 @@ function Edit() {
   
 
 
-  console.log(values.name);
   
 
   
@@ -118,11 +120,14 @@ function Edit() {
                     </div>
                     <div className="row">
                       <div className="col-12 col-sm-12">
-                        <Link to="/">
+                        <Link to={`/edit${params.id}`}>
                           <Btn onClick={handleCreate} label="EDITAR" />
 
                         </Link>
-                        <h1 onClick={handleCreate}>teste</h1>
+                        <Link to={`/`}>
+                          <Btn  label="VOLTAR" />
+
+                        </Link>
                       </div>
                     </div>
                   </form>
